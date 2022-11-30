@@ -11,6 +11,10 @@ function Favoritos() {
       setSave( humans )
   },[])
   
+  const handleSave = () =>{
+    localStorage.setItem("save", JSON.stringify(save) )
+  }
+  
   const nav = useNavigate()
 
 
@@ -21,7 +25,7 @@ function Favoritos() {
 
       {
         save.map( (human, index) => 
-          <div className="card">
+          <div className="card" id={index} >
             <img src={ !human.picture ? "" :human.picture.large} alt=""/>
             <h2> { !human.name 
                       ? "" 
@@ -29,6 +33,12 @@ function Favoritos() {
             <h2> { !human.gender ? "" :human.gender } </h2>
             <button onClick={() =>{
               save.splice(index,1)
+              const newSave = save
+              console.log ( newSave )
+              setSave( newSave )
+              console.log( save );
+              handleSave()
+              document.getElementById(2).remove()
             }}> Borrar </button>
           </div>
         )
