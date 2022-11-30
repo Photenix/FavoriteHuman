@@ -15,15 +15,15 @@ const Menu = () => {
         axios.get("https://randomuser.me/api/")
             .then( response => response.data)
             .then( obj => {
-            setHuman(obj.results[0])
+                setHuman(obj.results[0])
             })
     }
     ,[count])
 
-    useEffect( 
-    ()=>{
+    useEffect(()=>{
         let humans = JSON.parse(localStorage.getItem("save"))
         setSave( humans )
+        setNumFavorite( humans.length )
     },[])
 
     const handleSave = () =>{
