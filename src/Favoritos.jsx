@@ -25,7 +25,7 @@ function Favoritos() {
 
 
   return (
-    <div className="Favoritos">
+    <div className="favoritos">
       <h1>Favoritos</h1>
       <button onClick={ ()=>{ nav("/")} }> Volver </button>
 
