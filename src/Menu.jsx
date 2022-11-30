@@ -7,22 +7,17 @@ const Menu = () => {
     const [human, setHuman] = useState({})
     const [save, setSave] = useState([])
 
+    const [isFavorite, setIsFavorite] = useState(false)
+
     const [numFavorite, setNumFavorite] = useState(0)
 
     useEffect(()=>{
-        console.log( save.length )
-        setNumFavorite( save.length ) 
-    }, [save])
-
-    useEffect(
-        ()=>{
         axios.get("https://randomuser.me/api/")
             .then( response => response.data)
             .then( obj => {
             setHuman(obj.results[0])
-            console.log( human )
             })
-        }
+    }
     ,[count])
 
     useEffect( 
@@ -35,11 +30,14 @@ const Menu = () => {
         if ( human != {} ){
             save.push(human)
             localStorage.setItem("save", JSON.stringify(save))
+            setNumFavorite( save.length )
+            setIsFavorite( true )
         }
     }
 
     const handleNext = () =>{
         setCount(count => count + 1)
+        setIsFavorite( false )
     }
 
     const nav = useNavigate()
@@ -63,9 +61,12 @@ const Menu = () => {
             <button onClick={ handleNext }>
                 Buscar random
             </button>
-            <button onClick={ handleSave }>
-                Guardar Persona
-            </button>
+            {
+                isFavorite 
+                    ?""
+                    :<button onClick={ handleSave }>Guardar Persona </button>
+            }
+           
         </div>
     );
 };

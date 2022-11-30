@@ -14,6 +14,12 @@ function Favoritos() {
   const handleSave = () =>{
     localStorage.setItem("save", JSON.stringify(save) )
   }
+
+  const handleErase = () =>{
+    const newSave = save
+    setSave( newSave )
+    handleSave()
+  }
   
   const nav = useNavigate()
 
@@ -34,12 +40,7 @@ function Favoritos() {
             <button onClick={() =>{
               document.getElementById(index).remove()
               save.splice(index,1)
-              const newSave = save
-              console.log ( newSave )
-              setSave( newSave )
-              console.log( save );
-              handleSave()
-              
+              handleErase()
             }}> Borrar </button>
           </div>
         )
