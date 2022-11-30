@@ -48,10 +48,5 @@ function Favoritos() {
     </div>
   )
 }
-//brenda.acosta@gse.com.co
-//omar.moreno@gse.com.co
-
-
-
 
 export default Favoritos
