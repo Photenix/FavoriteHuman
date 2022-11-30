@@ -32,13 +32,14 @@ function Favoritos() {
                       :`${human.name.title} ${human.name.first} ${human.name.last}` }</h2>
             <h2> { !human.gender ? "" :human.gender } </h2>
             <button onClick={() =>{
+              document.getElementById(index).remove()
               save.splice(index,1)
               const newSave = save
               console.log ( newSave )
               setSave( newSave )
               console.log( save );
               handleSave()
-              document.getElementById(2).remove()
+              
             }}> Borrar </button>
           </div>
         )

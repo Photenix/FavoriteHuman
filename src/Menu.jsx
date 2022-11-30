@@ -7,6 +7,13 @@ const Menu = () => {
     const [human, setHuman] = useState({})
     const [save, setSave] = useState([])
 
+    const [numFavorite, setNumFavorite] = useState(0)
+
+    useEffect(()=>{
+        console.log( save.length )
+        setNumFavorite( save.length ) 
+    }, [save])
+
     useEffect(
         ()=>{
         axios.get("https://randomuser.me/api/")
@@ -25,8 +32,14 @@ const Menu = () => {
     },[])
 
     const handleSave = () =>{
-        save.push(human)
-        localStorage.setItem("save", JSON.stringify(save))
+        if ( human != {} ){
+            save.push(human)
+            localStorage.setItem("save", JSON.stringify(save))
+        }
+    }
+
+    const handleNext = () =>{
+        setCount(count => count + 1)
     }
 
     const nav = useNavigate()
@@ -35,7 +48,7 @@ const Menu = () => {
         <div>
             <div className='info'>
                 <h2>Numero de personas favoritas</h2>
-                <h3> { save.length }</h3>
+                <h3> { numFavorite }</h3>
                 <button onClick={ ()=>{ nav("/like")} }> Mirar cuales </button>
             </div>
 
@@ -47,10 +60,10 @@ const Menu = () => {
                     :`${human.name.title} ${human.name.first} ${human.name.last}` }</h2>
             <h2> { !human.gender ? "" :human.gender } </h2>
 
-            <button onClick={ () => setCount(count => count + 1) }>
+            <button onClick={ handleNext }>
                 Buscar random
             </button>
-            <button onClick={ handleSave() }>
+            <button onClick={ handleSave }>
                 Guardar Persona
             </button>
         </div>
