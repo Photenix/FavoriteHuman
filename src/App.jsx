@@ -1,5 +1,4 @@
-import './App.css'
-import axios from 'axios'
+import './style/App.css'
 import AppRouters from './router/AppRouter'
 
 function App() {

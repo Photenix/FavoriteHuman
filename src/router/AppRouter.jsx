@@ -1,22 +1,29 @@
-import React from 'react';
-import { BrowserRouter, Route, Routes } from 'react-router-dom';
-import Favoritos from '../Favoritos';
-import Menu from '../Menu';
+import React from "react";
+// import { BrowserRouter, Route, Routes, Switch } from 'react-router-dom';
+import { createBrowserRouter, RouterProvider } from "react-router-dom";
+
+import Favoritos from "../Favoritos";
+import Menu from "../Menu";
+
+const router = createBrowserRouter([
+  {
+    path: "/",
+    element: <Menu/>,
+  },
+	{
+    path: "/like",
+    element: <Favoritos/>,
+  },
+	{
+    path: "*",
+    element: "Es una prueba tecnica",
+  }
+]);
 
 const AppRouters = () => {
-    return (
-        <BrowserRouter>
-            <Routes>
-                <Route path="/"
-                    element={ <Menu/> } />
-                
-                <Route path="/like"
-                    element={ <Favoritos/> }
-                />
-                <Route path="*" element={ "Es una prueba tecnica" } />
-            </Routes>
-        </BrowserRouter>
-    );
+  return (
+		<RouterProvider router={router} />
+  );
 };
 
 export default AppRouters;

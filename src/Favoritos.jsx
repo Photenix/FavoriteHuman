@@ -1,15 +1,12 @@
 import { useEffect, useState } from 'react'
 import { useNavigate } from 'react-router-dom'
-import './App.css'
 
 function Favoritos() {
 
-  const [save, setSave] = useState([])
+  let humans = JSON.parse(localStorage.getItem("save"))
+  if( humans === null ) humans = []
 
-  useEffect(()=> {
-      let humans = JSON.parse(localStorage.getItem("save"))
-      setSave( humans )
-  },[])
+  const [save, setSave] = useState(humans)
   
   const handleSave = () =>{
     localStorage.setItem("save", JSON.stringify(save) )
